@@ -1,0 +1,121 @@
+.datepicker {
+  margin-top: 10px;
+  &__modal {
+    width: 224px;
+    border: 1px solid black;
+    border-radius: 5px;
+    &__header {
+      display: flex;
+      justify-content: space-around;
+      &__previous {
+        width: 0px;
+        height: 0px;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 10px solid gray;
+      }
+      &__p {
+        margin: 0;
+      }
+      &__home {
+        width: 15px;
+      }
+      &__next {
+        width: 0px;
+        height: 0px;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-left: 10px solid gray;
+      }
+    }
+    &__table {
+        border-collapse: collapse;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        &__head {
+            &__tr {
+                &__th {
+                    font-weight: 700;
+                    text-align: center;
+                    color: #999;
+                    cursor: default;
+                    background: #f1f1f1;
+                    border: 1px solid #ddd;
+                    vertical-align: middle;
+                    border-collapse: collapse;
+                }
+            }
+        }
+        &__body {
+            &__tr {
+                &__td {
+                    width: 14.2857142%;
+                    background: #f5f5f5;
+                    border: 1px solid #ddd;
+                    color: #666;
+                    font-size: 12px;
+                    text-align: center;
+                    padding: 0;
+                    border-collapse: collapse;
+                    cursor: pointer;
+                    height: 25px;
+                    &:hover {
+                        background-color: orange;
+                        color: white;
+                    }
+                    &__current {
+                        width: 14.2857142%;
+                        background: blue;
+                        border: 1px solid #ddd;
+                        color: white;
+                        font-size: 12px;
+                        text-align: center;
+                        padding: 0;
+                        border-collapse: collapse;
+                        cursor: pointer;
+                        height: 25px;
+                        &:hover {
+                            background-color: orange;
+                            color: white;
+                        }
+                        &__back {
+                          width: 14.2857142%;
+                          background: #f5f5f5;
+                          border: 1px solid #ddd;
+                          color: blue;
+                          font-size: 12px;
+                          text-align: center;
+                          padding: 0;
+                          border-collapse: collapse;
+                          cursor: pointer;
+                          height: 25px;
+                          &:hover {
+                              background-color: orange;
+                              color: white;
+                          }
+                        }
+                    }
+                    &__other {
+                      width: 14.2857142%;
+                      background: #f5f5f5;
+                      border: 1px solid #ddd;
+                      color: #666;
+                      font-size: 12px;
+                      text-align: center;
+                      padding: 0;
+                      border-collapse: collapse;
+                      cursor: pointer;
+                      height: 25px;
+                      opacity: 0.4;
+                      &:hover {
+                          background-color: orange;
+                          color: white;
+                      }
+                  }
+                }
+            }
+        }
+    }
+  }
+}
