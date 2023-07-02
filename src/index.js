@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./App.module.scss";
+import "./main.css"
 
 function DatePicker({
   cssClass,
@@ -154,6 +155,9 @@ function Modal({
   const [openModal, setOpenModal] = useState(false);
   const [openModalMonth, setOpenModalMonth] = useState(false);
   const [openModalYear, setOpenModalYear] = useState(false);
+
+  const modalMonthRef = useRef(null);
+  const modalYearRef = useRef(null);
 
   // Open Modal and set currentDate and pickDate to now - if user have already pick a date pickDate set to pick date
   const handlerOpen = () => {
@@ -437,9 +441,6 @@ function Modal({
 
   useEffect(() => {
     if (openModalYear === true) {
-      let element = document.querySelector(
-        ".App_datepicker__modal__header__div__div__modal__QKaZU"
-      );
       let nb;
       Object.keys(year).forEach(function eachKey(key) {
         if (year[key].toString() === pickDate.getFullYear().toString()) {
@@ -447,13 +448,12 @@ function Modal({
         }
       });
       let start = 22 * nb;
-
-      element.scrollTop = start;
+      if (modalYearRef && modalYearRef.current) {
+        modalYearRef.current.scrollTop = start;
+      }
+      
     }
     if (openModalMonth === true) {
-      let element = document.querySelector(
-        ".App_datepicker__modal__header__div__div__modal__QKaZU"
-      );
       let nb;
       Object.keys(month).forEach(function eachKey(key) {
         if (key.toString() === pickDate.getMonth().toString()) {
@@ -462,14 +462,16 @@ function Modal({
       });
       let start = 22 * nb;
 
-      element.scrollTop = start;
+      if (modalMonthRef && modalMonthRef.current) {
+        modalMonthRef.current.scrollTop = start;
+      }
     }
   }, [openModalMonth, openModalYear, pickDate]);
 
   return (
     <>
       <div className={styles.main}>
-        <label htmlFor={nameElement}>{labelElement}</label>
+        <label className={`${cssClass} ${styles.main__label}`} htmlFor={nameElement}>{labelElement}</label>
         <input
           className={`${cssClass} ${styles.main__input}`}
           onFocus={() => {
@@ -531,6 +533,7 @@ function Modal({
                   ></i>
                   {openModalMonth === true && (
                     <div
+                      ref={modalMonthRef}
                       className={`${cssClass} ${styles.datepicker__modal__header__div__div__modal}`}
                     >
                       <div
@@ -583,6 +586,7 @@ function Modal({
                   ></i>
                   {openModalYear === true && (
                     <div
+                      ref={modalYearRef}
                       className={`${cssClass} ${styles.datepicker__modal__header__div__div__modal}`}
                     >
                       <div
