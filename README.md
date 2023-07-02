@@ -13,13 +13,13 @@ When you use this package one label and one input display now. When you click on
 The package can be installed via [npm](https://github.com/npm/cli):
 
 ```
-npm install hrnet-datepicker --save
+npm install thomasop-date-picker --save
 ```
 
 Or via [yarn](https://github.com/yarnpkg/yarn):
 
 ```
-yarn add hrnet-datepicker
+yarn add thomasop-date-picker
 ```
 
 ## Requirements
@@ -57,7 +57,8 @@ And after call component with setter
         labelElement={"label"}
         nameElement={"name"}
         cssClass={"cssClass"}
-        returnValueSetter={setInputData}
+        setterValueInput={setInputData}
+        valueInput={inputData}
     />
 ```
 
