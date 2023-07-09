@@ -71,7 +71,7 @@ For `type` you can choice `before`, `after` or `all`
 
 ### Background color
 
-By default main background color is `blue`` and second background color is `orange` , but you can change this by adding props to DataPicker
+By default main background color is `blue` and second background color is `orange` , but you can change this by adding props to DataPicker
 
 ```js
     <DatePicker

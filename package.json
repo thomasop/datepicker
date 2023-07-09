@@ -1,6 +1,6 @@
 {
   "name": "thomasop-date-picker",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A simple react component that open modal and you can choice date",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
