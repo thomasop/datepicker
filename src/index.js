@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./App.module.scss";
-import "./main.css"
+import styled from "styled-components";
 
 function DatePicker({
   cssClass,
@@ -9,6 +9,8 @@ function DatePicker({
   setterValueInput,
   valueInput,
   type,
+  mainColor,
+  secondColor,
 }) {
   return (
     <Modal
@@ -18,128 +20,52 @@ function DatePicker({
       setterValueInput={setterValueInput}
       valueInput={valueInput}
       type={type}
+      mainColor={mainColor}
+      secondColor={secondColor}
     />
   );
 }
 
-const month = {
-  0: "Janvier",
-  1: "Février",
-  2: "Mars",
-  3: "Avril",
-  4: "Mai",
-  5: "Juin",
-  6: "Juillet",
-  7: "Aout",
-  8: "Septembre",
-  9: "Octobre",
-  10: "Novembre",
-  11: "Décembre",
-};
+const TdStyled = styled.td`
+  &:hover {
+    background-color: ${({ $backgroundColor }) =>
+      CSS.supports("color", $backgroundColor) ? $backgroundColor : "orange"};
+  }
+`;
 
-const year = {
-  0: "1950",
-  1: "1951",
-  2: "1952",
-  3: "1953",
-  4: "1954",
-  5: "1955",
-  6: "1956",
-  7: "1957",
-  8: "1958",
-  9: "1959",
-  10: "1960",
-  11: "1961",
-  12: "1962",
-  13: "1963",
-  14: "1964",
-  15: "1965",
-  16: "1966",
-  17: "1967",
-  18: "1968",
-  19: "1969",
-  20: "1970",
-  21: "1971",
-  22: "1972",
-  23: "1973",
-  24: "1974",
-  25: "1975",
-  26: "1976",
-  27: "1977",
-  28: "1978",
-  29: "1979",
-  30: "1980",
-  31: "1981",
-  32: "1982",
-  33: "1983",
-  34: "1984",
-  35: "1985",
-  36: "1986",
-  37: "1987",
-  38: "1988",
-  39: "1989",
-  40: "1990",
-  41: "1991",
-  42: "1992",
-  43: "1993",
-  44: "1994",
-  45: "1995",
-  46: "1996",
-  47: "1997",
-  48: "1998",
-  49: "1999",
-  50: "2000",
-  51: "2001",
-  52: "2002",
-  53: "2003",
-  54: "2004",
-  55: "2005",
-  56: "2006",
-  57: "2007",
-  58: "2008",
-  59: "2009",
-  60: "2010",
-  61: "2011",
-  62: "2012",
-  63: "2013",
-  64: "2014",
-  65: "2015",
-  66: "2016",
-  67: "2017",
-  68: "2018",
-  69: "2019",
-  70: "2020",
-  71: "2021",
-  72: "2022",
-  73: "2023",
-  74: "2024",
-  75: "2025",
-  76: "2026",
-  77: "2027",
-  78: "2028",
-  79: "2029",
-  80: "2030",
-  81: "2031",
-  82: "2032",
-  83: "2033",
-  84: "2034",
-  85: "2035",
-  86: "2036",
-  87: "2037",
-  88: "2038",
-  89: "2039",
-  90: "2040",
-  91: "2041",
-  92: "2042",
-  93: "2043",
-  94: "2044",
-  95: "2045",
-  96: "2046",
-  97: "2047",
-  98: "2048",
-  99: "2049",
-  100: "2050",
-};
+const TdCurrentStyled = styled.td`
+  background-color: ${({ $color }) =>
+    CSS.supports("color", $color) ? $color : "blue"};
+
+  &:hover {
+    background-color: ${({ $backgroundColor }) =>
+      CSS.supports("color", $backgroundColor) ? $backgroundColor : "orange"};
+  }
+`;
+
+const TdCurrentBackStyled = styled.td`
+  color: ${({ $color }) => (CSS.supports("color", $color) ? $color : "blue")};
+  &:hover {
+    background-color: ${({ $backgroundColor }) =>
+      CSS.supports("color", $backgroundColor) ? $backgroundColor : "orange"};
+  }
+`;
+
+const DivCurrentStyled = styled.div`
+  background-color: ${({ $color }) =>
+    CSS.supports("color", $color) ? $color : "blue"};
+  &:hover {
+    background-color: ${({ $backgroundColor }) =>
+      CSS.supports("color", $backgroundColor) ? $backgroundColor : "orange"};
+  }
+`;
+
+const DivStyled = styled.div`
+  &:hover {
+    background-color: ${({ $backgroundColor }) =>
+      CSS.supports("color", $backgroundColor) ? $backgroundColor : "orange"};
+  }
+`;
 
 function Modal({
   cssClass,
@@ -148,7 +74,128 @@ function Modal({
   setterValueInput,
   valueInput,
   type,
+  mainColor,
+  secondColor,
 }) {
+  const month = {
+    0: "Janvier",
+    1: "Février",
+    2: "Mars",
+    3: "Avril",
+    4: "Mai",
+    5: "Juin",
+    6: "Juillet",
+    7: "Aout",
+    8: "Septembre",
+    9: "Octobre",
+    10: "Novembre",
+    11: "Décembre",
+  };
+
+  const year = {
+    0: "1950",
+    1: "1951",
+    2: "1952",
+    3: "1953",
+    4: "1954",
+    5: "1955",
+    6: "1956",
+    7: "1957",
+    8: "1958",
+    9: "1959",
+    10: "1960",
+    11: "1961",
+    12: "1962",
+    13: "1963",
+    14: "1964",
+    15: "1965",
+    16: "1966",
+    17: "1967",
+    18: "1968",
+    19: "1969",
+    20: "1970",
+    21: "1971",
+    22: "1972",
+    23: "1973",
+    24: "1974",
+    25: "1975",
+    26: "1976",
+    27: "1977",
+    28: "1978",
+    29: "1979",
+    30: "1980",
+    31: "1981",
+    32: "1982",
+    33: "1983",
+    34: "1984",
+    35: "1985",
+    36: "1986",
+    37: "1987",
+    38: "1988",
+    39: "1989",
+    40: "1990",
+    41: "1991",
+    42: "1992",
+    43: "1993",
+    44: "1994",
+    45: "1995",
+    46: "1996",
+    47: "1997",
+    48: "1998",
+    49: "1999",
+    50: "2000",
+    51: "2001",
+    52: "2002",
+    53: "2003",
+    54: "2004",
+    55: "2005",
+    56: "2006",
+    57: "2007",
+    58: "2008",
+    59: "2009",
+    60: "2010",
+    61: "2011",
+    62: "2012",
+    63: "2013",
+    64: "2014",
+    65: "2015",
+    66: "2016",
+    67: "2017",
+    68: "2018",
+    69: "2019",
+    70: "2020",
+    71: "2021",
+    72: "2022",
+    73: "2023",
+    74: "2024",
+    75: "2025",
+    76: "2026",
+    77: "2027",
+    78: "2028",
+    79: "2029",
+    80: "2030",
+    81: "2031",
+    82: "2032",
+    83: "2033",
+    84: "2034",
+    85: "2035",
+    86: "2036",
+    87: "2037",
+    88: "2038",
+    89: "2039",
+    90: "2040",
+    91: "2041",
+    92: "2042",
+    93: "2043",
+    94: "2044",
+    95: "2045",
+    96: "2046",
+    97: "2047",
+    98: "2048",
+    99: "2049",
+    100: "2050",
+  };
+
   const [inputValue, setInputValue] = useState("");
   const [pickDate, setPickDate] = useState("");
   const [displayDay, setDisplayDay] = useState(null);
@@ -187,6 +234,7 @@ function Modal({
     }
   });
 
+  // Close select modal if its open
   const closeModalSelect = () => {
     if (openModalMonth === true) {
       setOpenModalMonth(false);
@@ -196,7 +244,7 @@ function Modal({
     }
   };
 
-  // Function when user click on previous - get pickDate and remove 1 month
+  // Go to previous month, close modal select
   const previous = () => {
     if (type === "after") {
       if (pickDate.getMonth() !== new Date().getMonth()) {
@@ -221,7 +269,7 @@ function Modal({
     }
   };
 
-  // Function when user click on next - get pickDate and add 1 month
+  // Go to next month, close modal select
   const next = () => {
     if (type === "before") {
       if (pickDate.getMonth() !== new Date().getMonth()) {
@@ -246,7 +294,7 @@ function Modal({
     }
   };
 
-  // Function when user click on home - go to current date
+  // Go to current month, close modal select
   const goCurrent = () => {
     setPickDate(new Date());
     closeModalSelect();
@@ -330,6 +378,7 @@ function Modal({
           formatDateMonth + "/" + formatDateDay + "/" + year,
           nameElement,
         ]);
+        closeModalSelect();
         setOpenModal(false);
       }
       if (datePick.getTime() >= new Date().getTime()) {
@@ -345,6 +394,8 @@ function Modal({
           formatDateMonth + "/" + formatDateDay + "/" + year,
           nameElement,
         ]);
+        closeModalSelect();
+        setOpenModal(false);
       }
     } else if (type === "before") {
       let datePick = new Date(year, month, day);
@@ -365,6 +416,7 @@ function Modal({
           formatDateMonth + "/" + formatDateDay + "/" + year,
           nameElement,
         ]);
+        closeModalSelect();
         setOpenModal(false);
       }
       if (datePick.getTime() <= new Date().getTime()) {
@@ -380,6 +432,7 @@ function Modal({
           formatDateMonth + "/" + formatDateDay + "/" + year,
           nameElement,
         ]);
+        closeModalSelect();
         setOpenModal(false);
       }
     } else {
@@ -395,10 +448,12 @@ function Modal({
         formatDateMonth + "/" + formatDateDay + "/" + year,
         nameElement,
       ]);
+      closeModalSelect();
       setOpenModal(false);
     }
   };
 
+  // Change month when select modal is open
   const changeMonth = (p) => {
     let year = pickDate.getFullYear();
     let createNewDate = new Date(year, p[0], 1);
@@ -419,6 +474,7 @@ function Modal({
     }
   };
 
+  // Change year when select modal is open
   const changeYear = (p) => {
     let month = pickDate.getMonth();
     let createNewDate = new Date(p[1], month, 1);
@@ -440,7 +496,13 @@ function Modal({
   };
 
   useEffect(() => {
-    if (openModalYear === true) {
+    console.log(modalYearRef.current);
+    console.log(modalMonthRef.current);
+  }, [modalYearRef, modalMonthRef]);
+
+  // Scroll to the current month and year when modal is open
+  useEffect(() => {
+    if (modalYearRef && openModalYear === true) {
       let nb;
       Object.keys(year).forEach(function eachKey(key) {
         if (year[key].toString() === pickDate.getFullYear().toString()) {
@@ -448,12 +510,11 @@ function Modal({
         }
       });
       let start = 22 * nb;
-      if (modalYearRef && modalYearRef.current) {
+      if (modalYearRef) {
         modalYearRef.current.scrollTop = start;
       }
-      
     }
-    if (openModalMonth === true) {
+    if (modalMonthRef && openModalMonth === true) {
       let nb;
       Object.keys(month).forEach(function eachKey(key) {
         if (key.toString() === pickDate.getMonth().toString()) {
@@ -461,8 +522,7 @@ function Modal({
         }
       });
       let start = 22 * nb;
-
-      if (modalMonthRef && modalMonthRef.current) {
+      if (modalMonthRef) {
         modalMonthRef.current.scrollTop = start;
       }
     }
@@ -471,7 +531,12 @@ function Modal({
   return (
     <>
       <div className={styles.main}>
-        <label className={`${cssClass} ${styles.main__label}`} htmlFor={nameElement}>{labelElement}</label>
+        <label
+          className={`${cssClass} ${styles.main__label}`}
+          htmlFor={nameElement}
+        >
+          {labelElement}
+        </label>
         <input
           className={`${cssClass} ${styles.main__input}`}
           onFocus={() => {
@@ -544,23 +609,26 @@ function Modal({
 
                           if (p[0].toString() === currentMonth.toString()) {
                             return (
-                              <div
+                              <DivCurrentStyled
                                 key={index}
+                                $backgroundColor={secondColor}
+                                $color={mainColor}
                                 onClick={() => changeMonth(p)}
                                 className={`${cssClass} ${styles.datepicker__modal__header__div__div__modal__div__div__current}`}
                               >
                                 {p[1]}
-                              </div>
+                              </DivCurrentStyled>
                             );
                           }
                           return (
-                            <div
+                            <DivStyled
                               key={index}
+                              $backgroundColor={secondColor}
                               onClick={() => changeMonth(p)}
                               className={`${cssClass} ${styles.datepicker__modal__header__div__div__modal__div__div}`}
                             >
                               {p[1]}
-                            </div>
+                            </DivStyled>
                           );
                         })}
                       </div>
@@ -597,23 +665,26 @@ function Modal({
 
                           if (p[1].toString() === currentYear.toString()) {
                             return (
-                              <div
+                              <DivCurrentStyled
                                 key={index}
                                 onClick={() => changeYear(p)}
                                 className={`${cssClass} ${styles.datepicker__modal__header__div__div__modal__div__div__current}`}
+                                $backgroundColor={secondColor}
+                                $color={mainColor}
                               >
                                 {p[1]}
-                              </div>
+                              </DivCurrentStyled>
                             );
                           }
                           return (
-                            <div
+                            <DivStyled
+                              $backgroundColor={secondColor}
                               key={index}
                               onClick={() => changeYear(p)}
                               className={`${cssClass} ${styles.datepicker__modal__header__div__div__modal__div__div}`}
                             >
                               {p[1]}
-                            </div>
+                            </DivStyled>
                           );
                         })}
                       </div>
@@ -675,10 +746,10 @@ function Modal({
                   return (
                     <tr className={`modal`} key={index}>
                       {displayDay[index].map((i, index) => {
-                        // Display day other month
                         if (i[1] !== pickDate.getMonth()) {
                           return (
-                            <td
+                            <TdStyled
+                              $backgroundColor={secondColor}
                               className={`${cssClass} ${styles.datepicker__modal__table__body__tr__td__other}`}
                               key={index}
                               onClick={() => {
@@ -686,7 +757,7 @@ function Modal({
                               }}
                             >
                               {i[0]}
-                            </td>
+                            </TdStyled>
                           );
                         }
                         if (valueInput[0].length > 0) {
@@ -699,17 +770,18 @@ function Modal({
                                 i[0].toString() &&
                               i[2].toString() === choiceDate[2].toString()
                             ) {
-                              // Display choice date
                               return (
-                                <td
+                                <TdCurrentStyled
                                   className={`${cssClass} ${styles.datepicker__modal__table__body__tr__td__current}`}
                                   key={index}
                                   onClick={() => {
                                     fillInput(i[0], i[1], i[2]);
                                   }}
+                                  $backgroundColor={secondColor}
+                                  $color={mainColor}
                                 >
                                   {i[0]}
-                                </td>
+                                </TdCurrentStyled>
                               );
                             }
                           }
@@ -724,15 +796,17 @@ function Modal({
                                   new Date().getFullYear().toString()
                               ) {
                                 return (
-                                  <td
+                                  <TdCurrentBackStyled
                                     className={`${cssClass} ${styles.datepicker__modal__table__body__tr__td__current__back}`}
                                     key={index}
                                     onClick={() => {
                                       fillInput(i[0], i[1], i[2]);
                                     }}
+                                    $backgroundColor={secondColor}
+                                    $color={mainColor}
                                   >
                                     {i[0]}
-                                  </td>
+                                  </TdCurrentBackStyled>
                                 );
                               }
                             } else {
@@ -743,32 +817,33 @@ function Modal({
                                   new Date().getFullYear().toString()
                               ) {
                                 return (
-                                  <td
+                                  <TdCurrentStyled
                                     className={`${cssClass} ${styles.datepicker__modal__table__body__tr__td__current}`}
                                     key={index}
                                     onClick={() => {
                                       fillInput(i[0], i[1], i[2]);
                                     }}
+                                    $backgroundColor={secondColor}
+                                    $color={mainColor}
                                   >
                                     {i[0]}
-                                  </td>
+                                  </TdCurrentStyled>
                                 );
                               }
                             }
                           }
                         }
-
-                        // Display default
                         return (
-                          <td
+                          <TdStyled
                             className={`${cssClass} ${styles.datepicker__modal__table__body__tr__td}`}
                             key={index}
                             onClick={() => {
                               fillInput(i[0], i[1], i[2]);
                             }}
+                            $backgroundColor={secondColor}
                           >
                             {i[0]}
-                          </td>
+                          </TdStyled>
                         );
                       })}
                     </tr>

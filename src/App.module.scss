@@ -6,9 +6,6 @@
     margin-top: 1rem;
     margin-bottom: 10px;
   }
-  &__input {
-    width: 150px;
-  }
 }
 .datepicker {
   position: absolute;
@@ -81,17 +78,14 @@
                 text-align: right;
                 cursor: pointer;
                 &:hover {
-                  background-color: orange;
                   color: white;
                 }
                 &__current {
                   padding: 2px 10px 2px 5px;
                   text-align: right;
-                  background-color: blue;
                   color: white;
                   cursor: pointer;
                   &:hover {
-                    background-color: orange;
                     color: white;
                   }
                 }
@@ -173,12 +167,10 @@
             cursor: pointer;
             height: 25px;
             &:hover {
-              background-color: orange;
               color: white;
             }
             &__current {
               width: 14.2857142%;
-              background: blue;
               border: 1px solid #ddd;
               color: white;
               font-size: 12px;
@@ -188,14 +180,12 @@
               cursor: pointer;
               height: 25px;
               &:hover {
-                background-color: orange;
                 color: white;
               }
               &__back {
                 width: 14.2857142%;
                 background: #f5f5f5;
                 border: 1px solid #ddd;
-                color: blue;
                 font-size: 12px;
                 text-align: center;
                 padding: 0;
@@ -203,7 +193,6 @@
                 cursor: pointer;
                 height: 25px;
                 &:hover {
-                  background-color: orange;
                   color: white;
                 }
               }
@@ -221,7 +210,7 @@
               height: 25px;
               opacity: 0.4;
               &:hover {
-                background-color: orange;
+                opacity: 1;
                 color: white;
               }
             }

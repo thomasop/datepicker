@@ -1,6 +1,6 @@
 {
   "name": "thomasop-date-picker",
-  "version": "1.0.6",
+  "version": "1.2.4",
   "description": "A simple react component that open modal and you can choice date",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -26,7 +26,7 @@
     "type": "git",
     "url": "https://github.com/thomasop/datepicker"
   },
-  "author": "thomasop",
+  "author": "Thomas Da Silva",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.22.5",
@@ -42,11 +42,13 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "styled-components": "^6.0.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.0.2"
   },
   "dependencies": {},
   "browserslist": {
