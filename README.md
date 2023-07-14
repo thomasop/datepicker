@@ -37,8 +37,8 @@ To use the date picker component, simply use the code bellow :
         labelElement={"label"}
         nameElement={"name"}
         cssClass={"cssClass"}
-        setterValueInput={setterValueInput}
-        valueInput={valueInput}
+        setterValueInput={setInputData}
+        valueInput={inputData}
     />
 ```
 
@@ -84,6 +84,10 @@ By default main background color is `blue` and second background color is `orang
         secondColor={"blue"}
     />
 ```
+
+## Help
+
+If you have a problem with this library or things to improve you can open an issue on github
 
 
 ## Compatibility
