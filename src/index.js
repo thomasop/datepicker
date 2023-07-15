@@ -495,11 +495,6 @@ function Modal({
     }
   };
 
-  useEffect(() => {
-    console.log(modalYearRef.current);
-    console.log(modalMonthRef.current);
-  }, [modalYearRef, modalMonthRef]);
-
   // Scroll to the current month and year when modal is open
   useEffect(() => {
     if (modalYearRef && openModalYear === true) {
